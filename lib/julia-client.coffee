@@ -1,3 +1,10 @@
+console.log 'registering deserializers'
+
+atom.deserializers.add
+  name: 'JuliaConsole'
+  deserialize: (state) ->
+    console.log state
+
 http = require 'http'
 commands = require './package/commands'
 
