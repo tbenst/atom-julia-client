@@ -43,6 +43,11 @@
       "versions": {
         "1.0.0": "consumeAutocompleteWatchEditor"
       }
+    },
+    "linter-indie": {
+      "versions": {
+        "2.0.0": "consumeIndie"
+      }
     }
   },
   "providedServices": {
