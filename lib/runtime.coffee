@@ -9,13 +9,13 @@ module.exports =
   frontend:    require './runtime/frontend'
   debugger:    require './runtime/debugger'
   profiler:    require './runtime/profiler'
-  linter:    require './runtime/linter'
+  linter:      require './runtime/linter'
 
   activate: ->
     @modules.activate()
     @frontend.activate()
     @debugger.activate()
-    @linter.activate()
+
 
   deactivate: ->
     mod.deactivate() for mod in [@modules, @console, @frontend, @debugger, @profiler, @linter]
@@ -25,13 +25,12 @@ module.exports =
     @debugger.consumeInk ink
     @profiler.activate ink
     @console2.activate ink
+    @linter.activate ink
     for mod in [@console, @workspace, @plots]
       mod.ink = ink
       mod.activate()
 
   provideHyperclick: -> @evaluation.provideHyperclick()
-
-  consumeIndie: (l) -> @linter.consumeIndie(l)
 
   consumeStatusBar: (bar) ->
     @modules.consumeStatusBar bar

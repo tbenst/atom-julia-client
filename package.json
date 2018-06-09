@@ -13,7 +13,7 @@
     "atom-space-pen-views": "^2.0.0",
     "underscore-plus": "*",
     "atom-package-deps": "*",
-    "coffee-script": "*",
+    "coffeescript": "*",
     "physical-cpu-count": "*",
     "node-pty-prebuilt": "^0.7.3",
     "etch": "*"
@@ -42,11 +42,6 @@
     "autocomplete.watchEditor": {
       "versions": {
         "1.0.0": "consumeAutocompleteWatchEditor"
-      }
-    },
-    "linter-indie": {
-      "versions": {
-        "2.0.0": "consumeIndie"
       }
     }
   },
