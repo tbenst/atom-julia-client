@@ -15,6 +15,7 @@ module.exports =
     @modules.activate()
     @frontend.activate()
     @debugger.activate()
+    @evaluation.activate()
 
 
   deactivate: ->

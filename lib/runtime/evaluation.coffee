@@ -12,6 +12,15 @@ modules = require './modules'
     client.import rpc: ['eval', 'evalall', 'evalrepl', 'evalshow'], msg: ['cd', 'clearLazy']
 
 module.exports =
+  activate: ->
+    client.handle 'error', (options) =>
+      if atom.config.get 'julia-client.uiOptions.errorNotifications'
+        notif = atom.notifications.addError options.msg, options
+        if options.highlights?
+          @showError(notif, options.highlights)
+      console.error options.detail
+      atom.beep()
+
   currentContext: ->
     editor = atom.workspace.getActiveTextEditor()
     mod = modules.current() ? 'Main'
@@ -118,7 +127,8 @@ module.exports =
     @errorLines?.lights.destroy()
     lights = @ink.highlights.errorLines (file: file, line: line-1 for {file, line} in lines)
     @errorLines = {r, lights}
-    r.onDidDestroy =>
+    func = if r.onDidDestroy? then 'onDidDestroy' else 'onDidDismiss'
+    r[func] =>
       if @errorLines?.r == r then @errorLines.lights.destroy()
 
   # Working Directory

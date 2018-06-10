@@ -34,12 +34,6 @@ module.exports =
       else
         @ipc.queue.push msg
 
-    @handle 'error', (options) =>
-      if atom.config.get 'julia-client.uiOptions.errorNotifications'
-        atom.notifications.addError options.msg, options
-      console.error options.detail
-      atom.beep()
-
     @onAttached =>
       args = atom.config.get 'julia-client.juliaOptions.arguments'
       @import('connected')()
